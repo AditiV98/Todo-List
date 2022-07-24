@@ -1,13 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
 const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
 
-const PORT = process.env.PORT || 5500;
+// Config
+dotenv.config({ path: "backend/server/config.env" });
 
 app.use(cors());
 
@@ -20,4 +21,4 @@ mongoose
 
 app.use("/", TodoItemRoute);
 
-app.listen(PORT, () => console.log("server connected"));
+app.listen(process.env.PORT, () => console.log("server connected"));
